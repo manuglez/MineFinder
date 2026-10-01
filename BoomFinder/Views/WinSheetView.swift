@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct WinSheetView: View {
+    let seconds: Int
+    let gameLevel: String
+    let score: Float
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      VStack {
+        Text("🎉🎊 All Booms Cleared!! 😎")
+        Text("Time elapsed: \(String(seconds))")
+        Text("Difficulty: \(gameLevel.capitalized)")
+        Text("Score: \(score)")
+      }
     }
 }
 
 #Preview {
-    WinSheetView()
+    WinSheetView(seconds: 120, gameLevel: "beginner", score: 42.0)
 }

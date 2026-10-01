@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct SettingsStepperView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+  var label: String
+  @Binding var value: Int
+
+  var range = 2...30
+
+  var onChange: () -> ()?
+  var body: some View {
+    HStack {
+      Spacer()
+      Stepper(
+        "\(label)",
+        value: $value,
+        in: range,
+      )
+      .onChange(of: value) {
+        onChange()
+      }
+      Text("\(value)")
+      Spacer()
     }
+  }
 }
 
-#Preview {
-    SettingsStepperView()
+#Preview(traits: .sizeThatFitsLayout) {
+  @Previewable @State var val = 10
+  SettingsStepperView(label: "Label" , value: $val, onChange: {})
+    .padding()
 }
